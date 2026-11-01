@@ -532,7 +532,7 @@ function renderProducts(announce = false) {
           ${items.map(renderProduct).join("")}
         </div>
         <div class="menu-group-bottom">
-          <span class="carousel-hint">${items.length > 1 ? "SWIPE OR USE THE ARROWS" : "YOUR COOL-SIDE FAVOURITE"}</span>
+          <span class="carousel-hint">${items.length > 1 ? "SWIPE OR USE THE ARROWS" : "A LITTLE SOMETHING TO SAVOUR"}</span>
           <button class="show-all" type="button" data-show-all="${group.id}"
                   aria-expanded="${expanded}" aria-controls="track-${group.id}"
                   ${items.length < 2 ? "hidden" : ""}>
