@@ -516,6 +516,7 @@ grid.addEventListener("click", (event) => {
     );
 
     const index = Number(sizeButton.dataset.size);
+    if (!product || !product.variants[index]) return;
 
     chosenSizes.set(product.id, index);
     updateCard(product);
@@ -555,6 +556,7 @@ function syncScrollLock() {
 
 navButton.addEventListener("click", () => {
   navigation.showModal();
+  navigation.scrollTop = 0;
   navButton.setAttribute("aria-expanded", "true");
   syncScrollLock();
 });
@@ -567,6 +569,7 @@ document.getElementById("close-navigation").addEventListener(
 navigation.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", () => {
     navigation.close();
+    syncScrollLock();
   });
 });
 
@@ -592,6 +595,7 @@ function openProduct(id) {
   currentProduct = products.find(
     (product) => product.id === id
   );
+  if (!currentProduct) return;
 
   const image = document.getElementById("detail-image");
 
@@ -675,14 +679,22 @@ productDialog.addEventListener("click", (event) => {
 
 /* ENLARGED PRODUCT PHOTO */
 
-document.getElementById("zoom-product").addEventListener("click", () => {
-  const productImage = document.getElementById("detail-image");
-
-  viewerImage.src = productImage.currentSrc || productImage.src;
-  viewerImage.alt = productImage.alt;
-
+function openImage(source, alt) {
+  viewerImage.src = source;
+  viewerImage.alt = alt;
   imageViewer.showModal();
   syncScrollLock();
+}
+
+document.getElementById("zoom-product").addEventListener("click", () => {
+  const productImage = document.getElementById("detail-image");
+  openImage(productImage.currentSrc || productImage.src, productImage.alt);
+});
+
+document.querySelectorAll("[data-enlarge]").forEach((button) => {
+  button.addEventListener("click", () => {
+    openImage(button.dataset.enlarge, button.dataset.imageAlt || "BREW photograph");
+  });
 });
 
 document.getElementById("close-viewer").addEventListener(
