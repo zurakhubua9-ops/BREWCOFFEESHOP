@@ -2590,3 +2590,11 @@ dialog::backdrop {
     box-shadow:0 12px 18px rgba(0,0,0,.2),0 28px 42px -16px rgba(0,0,0,.65);
   }
 }
+
+/* Vector arrows stay monochrome on iOS and other platforms. */
+.ui-arrow {display:inline-block;width:18px;height:18px;flex:0 0 18px;vertical-align:middle;}
+.button .ui-arrow {width:17px;height:17px;}
+.round-link .ui-arrow {width:24px;height:24px;}
+.footer nav a .ui-arrow {width:14px;height:14px;margin-left:4px;}
+.footer-bottom .ui-arrow,.navigation-bottom .ui-arrow {width:13px;height:13px;margin-left:3px;}
+.zoom-hint .ui-arrow {width:13px;height:13px;}

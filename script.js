@@ -42,8 +42,8 @@ function createPlayer(videoId, buttonId, messageId) {
     const paused = video.paused;
 
     button.textContent = paused
-      ? "Play video ▶"
-      : "Pause Ⅱ";
+      ? "Play video"
+      : "Pause video";
 
     button.setAttribute(
       "aria-label",
