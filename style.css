@@ -2553,3 +2553,16 @@ dialog::backdrop {
 @media(prefers-reduced-motion:reduce) {
   .product-track .product-image {transform:none;transition:none;}
 }
+
+/* Stable card dimensions in both menu views. */
+.product-track {grid-auto-columns:calc((100% - 26px)/2);}
+.product-track:has(> .product:only-child) {grid-auto-columns:calc((100% - 26px)/2);}
+.search {align-items:center;gap:10px;min-height:44px;width:220px;}
+.search > span {display:flex;align-items:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;}
+.search > span svg {display:block;}
+.search input {flex:1;width:0;height:44px;padding:0;font-size:13px;line-height:20px;}
+@media(max-width:640px) {
+  .product-track,.product-track:has(> .product:only-child) {grid-auto-columns:100%;}
+  .search {width:100%;}
+  .search input {width:0;font-size:16px;}
+}

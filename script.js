@@ -464,7 +464,12 @@ function syncCarousels() {
     const next = group.querySelector('[data-carousel="1"]');
     previous.disabled = track.scrollLeft <= 2;
     next.disabled = track.scrollLeft >= maximum - 2;
-    group.classList.toggle("has-overflow", maximum > 2 && !group.classList.contains("is-expanded"));
+    const expanded = group.classList.contains("is-expanded");
+    const hasOverflow = maximum > 2;
+    group.classList.toggle("has-overflow", hasOverflow && !expanded);
+    group.querySelector(".carousel-controls").hidden = expanded || !hasOverflow;
+    group.querySelector("[data-show-all]").hidden = !expanded && !hasOverflow;
+    group.querySelector(".menu-group-bottom").hidden = !expanded && !hasOverflow;
   });
 }
 
