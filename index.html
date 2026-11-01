@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211c17">
+  <meta
+    name="description"
+    content="BREW Coffee House — good coffee, sweet treats, and slow moments."
+  >
+
+  <title>BREW — Coffee & Slow Moments</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#menu">Skip to menu</a>
+
+  <header class="header">
+    <a class="brand" href="#home" aria-label="Brew Coffee home">
+      <img
+        src="assets/logo.png"
+        alt="Brew Coffee"
+        width="190"
+        height="76"
+      >
+    </a>
+
+    <a class="header-link" href="#menu">Explore our coffee ↗</a>
+
+    <button
+      class="plain-button menu-button"
+      id="open-navigation"
+      type="button"
+      aria-expanded="false"
+      aria-controls="navigation"
+    >
+      Menu
+      <span class="menu-icon" aria-hidden="true">
+        <i></i>
+        <i></i>
+      </span>
+    </button>
+  </header>
+
+  <dialog
+    class="navigation"
+    id="navigation"
+    aria-label="Main navigation"
+  >
+    <div class="navigation-top">
+      <a
+        class="navigation-logo"
+        href="#home"
+        aria-label="Brew Coffee home"
+      >
+        <img
+          src="assets/logo.png"
+          alt="Brew Coffee"
+          width="190"
+          height="76"
+        >
+      </a>
+
+      <button
+        class="plain-button"
+        id="close-navigation"
+        type="button"
+      >
+        Close ✕
+      </button>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#menu">Our menu</a>
+      <a href="#ritual">The ritual</a>
+      <a href="#story">Our story</a>
+      <a href="#space">Our space</a>
+      <a href="#questions">Good to know</a>
+    </nav>
+
+    <div class="navigation-bottom">
+      <span>COFFEE & SLOW MOMENTS</span>
+      <span>BREW YOUR MOMENT.</span>
+    </div>
+  </dialog>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-background">
+        <video
+          id="hero-video"
+          src="assets/hero-espresso.mp4"
+          poster="assets/espresso.jpg"
+          muted
+          playsinline
+          loop
+          preload="metadata"
+          aria-hidden="true"
+        ></video>
+      </div>
+
+      <div class="hero-top">
+        <span>THE ART OF A GOOD CUP</span>
+        <span>COFFEE. CRAFT. CONNECTION.</span>
+      </div>
+
+      <div class="hero-content">
+        <p class="eyebrow">A LITTLE COFFEE. A LITTLE LESS HURRY.</p>
+
+        <h1 id="hero-title">
+          Life happens.<br>
+          <em>Coffee helps.</em>
+        </h1>
+
+        <p class="hero-description">
+          A good cup. A slower pace.<br>
+          A little moment, just for you.
+        </p>
+
+        <a class="arrow-link" href="#menu">
+          <span aria-hidden="true">↗</span>
+          Find your favourite
+        </a>
+      </div>
+
+      <div class="hero-bottom">
+        <a href="#menu">BREW YOUR MOMENT. ↓</a>
+
+        <div class="hero-video-controls">
+          <button
+            class="video-button"
+            id="hero-control"
+            type="button"
+            hidden
+          >
+            Play video ▶
+          </button>
+
+          <p
+            class="video-message"
+            id="hero-message"
+            role="status"
+            hidden
+          ></p>
+        </div>
+
+        <span>COFFEE & SLOW MOMENTS</span>
+      </div>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <p class="eyebrow">
+        NOT JUST COFFEE.<br>
+        A DAILY RITUAL.
+      </p>
+
+      <h2 id="intro-title" data-reveal>
+        Good coffee.<br>
+        <em>Your moment.</em>
+      </h2>
+
+      <p class="intro-copy">
+        The first sip. A familiar aroma.
+        A conversation without a clock.
+        Some things deserve a little more time.
+      </p>
+    </section>
+
+    <section
+      class="menu-section"
+      id="menu"
+      aria-labelledby="menu-title"
+    >
+      <div class="section-heading" data-reveal>
+        <div>
+          <p class="eyebrow">THE BREW SELECTION</p>
+          <h2 id="menu-title">Find your <em>favourite.</em></h2>
+        </div>
+
+        <p>
+          Something bold. Something smooth.<br>
+          Something made for your moment.
+        </p>
+      </div>
+
+      <div class="menu-toolbar">
+        <div class="filters" role="group" aria-label="Menu categories">
+          <button type="button" data-filter="all" aria-pressed="true">
+            All
+          </button>
+
+          <button type="button" data-filter="hot" aria-pressed="false">
+            Hot coffee
+          </button>
+
+          <button type="button" data-filter="cold" aria-pressed="false">
+            Iced coffee
+          </button>
+
+          <button type="button" data-filter="food" aria-pressed="false">
+            Sweet treats
+          </button>
+        </div>
+
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="menu-search"
+            type="search"
+            placeholder="Find your flavour"
+            aria-label="Search the menu"
+          >
+        </label>
+      </div>
+
+      <p class="sample-note">CONCEPT MENU · SAMPLE PRICES IN GEL</p>
+
+      <div class="product-grid" id="product-grid"></div>
+
+      <p class="empty-message" id="empty-message" hidden>
+        No matches found. Try another flavour.
+      </p>
+
+      <noscript>
+        Enable JavaScript to browse the interactive menu.
+      </noscript>
+    </section>
+
+    <section
+      class="ritual"
+      id="ritual"
+      aria-labelledby="ritual-title"
+    >
+      <div class="ritual-media" data-reveal>
+        <video
+          id="ritual-video"
+          src="assets/latte-art.mp4"
+          poster="assets/latte.jpg"
+          muted
+          playsinline
+          loop
+          preload="none"
+          aria-hidden="true"
+        ></video>
+
+        <span class="ritual-caption">THE HANDS BEHIND YOUR CUP</span>
+
+        <button
+          class="video-button ritual-control"
+          id="ritual-control"
+          type="button"
+          hidden
+        >
+          Play video ▶
+        </button>
+      </div>
+
+      <div class="ritual-copy" data-reveal>
+        <p class="eyebrow">SLOW DOWN. SAVOUR MORE.</p>
+
+        <h2 id="ritual-title">
+          The beauty<br>
+          is in the <em>ritual.</em>
+        </h2>
+
+        <p>
+          The quiet rhythm of preparation.
+          The soft swirl of milk.
+          That first sip worth pausing for.
+          A little care makes all the difference.
+        </p>
+
+        <a class="text-link" href="#menu">
+          Discover your daily ritual ↗
+        </a>
+
+        <p
+          class="video-message"
+          id="ritual-message"
+          role="status"
+          hidden
+        ></p>
+      </div>
+    </section>
+
+    <section class="pairing" aria-labelledby="pairing-title">
+      <div class="pairing-image">
+        <img
+          src="assets/croissant.jpg"
+          alt="A croissant served with coffee"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="pairing-copy" data-reveal>
+        <p class="eyebrow">BETTER TOGETHER</p>
+
+        <h2 id="pairing-title">
+          A little sweet.<br>
+          A little <em>perfect.</em>
+        </h2>
+
+        <p>
+          A buttery croissant. A rich chocolate brownie.
+          Some things just belong beside your favourite cup.
+        </p>
+
+        <a class="text-link" href="#menu" id="show-treats">
+          Explore sweet treats ↗
+        </a>
+      </div>
+    </section>
+
+    <section class="story" id="story" aria-labelledby="story-title">
+      <div class="story-heading">
+        <p class="eyebrow">THE IDEA BEHIND BREW</p>
+
+        <h2 id="story-title">
+          A little slower.<br>
+          <em>A little better.</em>
+        </h2>
+      </div>
+
+      <div class="story-content">
+        <p class="story-lead">
+          Good coffee deserves your attention.
+          So does the moment around it.
+        </p>
+
+        <p class="story-description">
+          BREW brings together coffee, warm spaces and simple pleasures.
+          A quiet morning. Something freshly baked. A conversation
+          that lasts longer than you planned.
+        </p>
+
+        <p class="story-description">
+          Our idea is simple: make room for the everyday things
+          that make a day feel good.
+        </p>
+
+        <a class="text-link" href="#menu">
+          Find your daily ritual ↗
+        </a>
+      </div>
+
+      <div class="story-signature" aria-hidden="true">
+        BREW YOUR MOMENT.
+      </div>
+    </section>
+
+    <section
+      class="our-space"
+      id="space"
+      aria-labelledby="space-title"
+    >
+      <div class="space-heading" data-reveal>
+        <p class="eyebrow">A PLACE TO SLOW DOWN</p>
+
+        <h2 id="space-title">
+          Stay a little <em>longer.</em>
+        </h2>
+
+        <p class="space-description">
+          A quiet corner. A familiar face.
+          Your favourite cup, and nowhere else to be.
+        </p>
+      </div>
+
+      <figure class="space-figure">
+        <img
+          src="assets/interior.png"
+          alt="Brew interior concept with walnut furniture and warm lighting"
+          loading="lazy"
+          width="1536"
+          height="1024"
+        >
+
+        <figcaption>
+          <span>THE BREW ATMOSPHERE</span>
+          <span>INTERIOR CONCEPT / 01</span>
+        </figcaption>
+      </figure>
+
+      <div class="space-bottom">
+        <span>GOOD COMPANY. BETTER COFFEE.</span>
+        <a class="text-link" href="#menu">Find your favourite ↗</a>
+      </div>
+    </section>
+
+    <section
+      class="faq"
+      id="questions"
+      aria-labelledby="faq-title"
+    >
+      <div class="faq-heading" data-reveal>
+        <p class="eyebrow">A FEW LITTLE DETAILS</p>
+        <h2 id="faq-title">Good<br>to <em>know.</em></h2>
+      </div>
+
+      <div class="faq-list">
+        <details>
+          <summary>How do I choose a drink size?</summary>
+          <p>
+            Choose S, M, or L below your drink, or open its photo
+            to compare volumes and prices.
+            Espresso has Single and Double options.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is the displayed price the full price?</summary>
+          <p>
+            Yes. The price updates to match your selected size.
+            A latte is 5 ₾ for Small, 7 ₾ for Medium, and 8 ₾ for Large.
+            These are sample menu prices.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I order online?</summary>
+          <p>
+            Not yet. You can explore the menu and choose sizes,
+            but this website does not submit orders or process payments.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where can I find allergen information?</summary>
+          <p>
+            Ask the café team before ordering if you have an allergy
+            or dietary requirement. Verified ingredients and
+            cross-contact information have not been added to this concept menu.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <img
+        src="assets/coffee-beans.jpg"
+        alt="Roasted coffee beans"
+        loading="lazy"
+      >
+
+      <div data-reveal>
+        <p class="eyebrow">GOOD THINGS TAKE A MOMENT.</p>
+        <h2 id="closing-title">Brew your<br><em>moment.</em></h2>
+        <a class="text-link" href="#menu">Explore the menu ↗</a>
+      </div>
+    </section>
+
+    <section class="project-info" aria-labelledby="project-title">
+      <div>
+        <p class="eyebrow">BEHIND THE PROJECT</p>
+
+        <h2 id="project-title">
+          From identity<br>
+          <em>to experience.</em>
+        </h2>
+      </div>
+
+      <div class="project-info-copy">
+        <p>
+          BREW is a coffee house brand concept, brought to life
+          through visual identity and a digital experience.
+        </p>
+
+        <p class="project-disclaimer">
+          A portfolio project. Menu prices are illustrative.
+          Online ordering is unavailable.
+        </p>
+
+        <a
+          class="text-link"
+          href="https://www.instagram.com/zura.visuals/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Explore Zura’s portfolio ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <a
+        class="footer-brand"
+        href="#home"
+        aria-label="Brew Coffee home"
+      >
+        <img
+          src="assets/logo.png"
+          alt="Brew Coffee"
+          width="220"
+          height="88"
+        >
+      </a>
+
+      <nav aria-label="Footer navigation">
+        <a href="#menu">Our menu</a>
+        <a href="#story">Our story</a>
+        <a href="#space">Our space</a>
+        <a href="#questions">Good to know</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+        © <span id="year">2026</span>
+        BREW COFFEE HOUSE · BRAND CONCEPT
+      </span>
+      <span>COFFEE & SLOW MOMENTS</span>
+    </div>
+  </footer>
+
+  <dialog
+    class="product-dialog"
+    id="product-dialog"
+    aria-labelledby="detail-name"
+  >
+    <button
+      class="detail-close"
+      id="close-product"
+      type="button"
+      autofocus
+      aria-label="Close product details"
+    >✕</button>
+
+    <div class="detail-layout">
+      <button
+        class="detail-image detail-image-button"
+        id="zoom-product"
+        type="button"
+        aria-label="Enlarge product photo"
+        aria-haspopup="dialog"
+        aria-controls="image-viewer"
+      >
+        <img id="detail-image" src="assets/espresso.jpg" alt="">
+        <span class="zoom-hint">VIEW FULL IMAGE ↗</span>
+      </button>
+
+      <div class="detail-content">
+        <p class="eyebrow" id="detail-category"></p>
+        <h2 id="detail-name"></h2>
+        <p class="detail-description" id="detail-description"></p>
+
+        <fieldset class="size-fieldset" id="size-fieldset">
+          <legend>Choose your size</legend>
+          <div class="size-options" id="size-options"></div>
+        </fieldset>
+
+        <div class="detail-total">
+          <span id="detail-unit">Your selection</span>
+          <strong id="detail-price" aria-live="polite"></strong>
+        </div>
+
+        <p class="detail-note">
+          Sample pricing. Online ordering is not available yet.
+        </p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog
+    class="image-viewer"
+    id="image-viewer"
+    aria-label="Enlarged product photo"
+  >
+    <button
+      class="viewer-close"
+      id="close-viewer"
+      type="button"
+      autofocus
+      aria-label="Close enlarged photo"
+    >✕</button>
+
+    <img id="viewer-image" src="assets/espresso.jpg" alt="">
+  </dialog>
+
+  <p class="sr-only" id="results-status" role="status"></p>
+</body>
+</html>
