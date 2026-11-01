@@ -2494,3 +2494,22 @@ dialog::backdrop {
   .intro-layout .round-link {grid-column:1;grid-row:auto;}
   .ritual-copy {padding-inline:0;}
 }
+
+/* Exact navigation centering and unobtrusive inline search. */
+.desktop-nav {
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  justify-content:center;
+}
+.heading-aside {margin-left:auto;text-align:right;}
+.heading-aside p {margin-right:0;}
+.search {transition:border-color .2s ease;}
+.search input:focus,.search input:focus-visible {
+  outline:none;
+  box-shadow:none;
+}
+.search:focus-within {border-bottom-color:var(--gold);}
+@media(max-width:640px) {
+  .heading-aside {width:100%;justify-content:flex-end;}
+}
