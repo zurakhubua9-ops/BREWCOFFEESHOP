@@ -362,26 +362,33 @@ function searchText(value) {
     .toLowerCase();
 }
 
-function renderProducts(announce = false) {
-  const query = searchText(search.value.trim());
+/* CATEGORY ROWS */
 
-  const visible = products.filter((product) => {
-    const matchesCategory =
-      activeFilter === "all" ||
-      product.category === activeFilter;
+const menuGroups = [
+  { id: "hot", title: "Hot coffee", caption: "WARM HANDS. GOOD BEGINNINGS." },
+  { id: "cold", title: "Iced coffee", caption: "A LITTLE ICE. A LOT TO LOVE." },
+  { id: "food", title: "Sweet treats", caption: "GOOD COMPANY FOR YOUR CUP." }
+];
+const expandedGroups = new Set();
+let carouselFrame = 0;
+const carouselResizeObserver = "ResizeObserver" in window
+  ? new ResizeObserver(scheduleCarouselSync)
+  : null;
 
-    const text = searchText(
-      `${product.name} ${product.description}`
-    );
+function arrowIcon(direction) {
+  const paths = {
+    left: "M19 12H5m6-6-6 6 6 6",
+    right: "M5 12h14m-6-6 6 6-6 6",
+    down: "M12 5v14m-6-6 6 6 6-6",
+    up: "M12 19V5m-6 6 6-6 6 6"
+  };
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[direction]}"/></svg>`;
+}
 
-    return matchesCategory && text.includes(query);
-  });
-
-  grid.innerHTML = visible.map((product) => {
-    const current = getSize(product);
-    const variant = product.variants[current];
-
-    return `
+function renderProduct(product) {
+  const current = getSize(product);
+  const variant = product.variants[current];
+  return `
       <article class="product" data-product="${product.id}">
         <button
           class="product-open"
@@ -402,12 +409,12 @@ function renderProducts(announce = false) {
               ${categories[product.category]}
             </span>
 
-            <span class="product-arrow" aria-hidden="true">↗</span>
+            <span class="product-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
           </span>
         </button>
 
         <div class="product-caption">
-          <h3>${product.name}</h3>
+          <h4>${product.name}</h4>
           <span class="product-price">
             ${priceText(variant.price)}
           </span>
@@ -447,7 +454,106 @@ function renderProducts(announce = false) {
         }
       </article>
     `;
+}
+
+function syncCarousels() {
+  grid.querySelectorAll(".menu-group").forEach((group) => {
+    const track = group.querySelector(".product-track");
+    const maximum = Math.max(0, track.scrollWidth - track.clientWidth);
+    const previous = group.querySelector('[data-carousel="-1"]');
+    const next = group.querySelector('[data-carousel="1"]');
+    previous.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= maximum - 2;
+    group.classList.toggle("has-overflow", maximum > 2 && !group.classList.contains("is-expanded"));
+  });
+}
+
+function scheduleCarouselSync() {
+  if (carouselFrame) return;
+  carouselFrame = requestAnimationFrame(() => {
+    carouselFrame = 0;
+    syncCarousels();
+  });
+}
+
+function moveCarousel(track, direction) {
+  const card = track.querySelector(".product");
+  if (!card) return;
+  const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || "0");
+  track.scrollBy({ left: direction * step, behavior: reducedMotion.matches ? "auto" : "smooth" });
+}
+
+window.addEventListener("resize", scheduleCarouselSync, { passive: true });
+
+function renderProducts(announce = false) {
+  const query = searchText(search.value.trim());
+
+  const visible = products.filter((product) => {
+    const matchesCategory =
+      activeFilter === "all" ||
+      product.category === activeFilter;
+
+    const text = searchText(
+      `${product.name} ${product.description}`
+    );
+
+    return matchesCategory && text.includes(query);
+  });
+
+  if (carouselResizeObserver) carouselResizeObserver.disconnect();
+
+  grid.innerHTML = menuGroups.map((group) => {
+    const items = visible.filter((product) => product.category === group.id);
+    if (!items.length) return "";
+
+    const expanded = expandedGroups.has(group.id);
+    return `
+      <section class="menu-group${expanded ? " is-expanded" : ""}"
+               data-group="${group.id}"
+               aria-labelledby="group-${group.id}-title">
+        <div class="menu-group-heading">
+          <div>
+            <p class="eyebrow">${group.caption}</p>
+            <h3 id="group-${group.id}-title">${group.title}<sup>${String(items.length).padStart(2, "0")}</sup></h3>
+          </div>
+          <div class="carousel-controls" ${expanded || items.length < 2 ? "hidden" : ""}>
+            <button class="carousel-arrow" type="button" data-carousel="-1"
+                    aria-label="Previous ${group.title.toLowerCase()}" aria-controls="track-${group.id}">
+              ${arrowIcon("left")}
+            </button>
+            <button class="carousel-arrow" type="button" data-carousel="1"
+                    aria-label="Next ${group.title.toLowerCase()}" aria-controls="track-${group.id}">
+              ${arrowIcon("right")}
+            </button>
+          </div>
+        </div>
+        <div class="product-track" id="track-${group.id}" tabindex="0"
+             role="group" aria-label="${group.title} products">
+          ${items.map(renderProduct).join("")}
+        </div>
+        <div class="menu-group-bottom">
+          <span class="carousel-hint">${items.length > 1 ? "SWIPE OR USE THE ARROWS" : "YOUR COOL-SIDE FAVOURITE"}</span>
+          <button class="show-all" type="button" data-show-all="${group.id}"
+                  aria-expanded="${expanded}" aria-controls="track-${group.id}"
+                  ${items.length < 2 ? "hidden" : ""}>
+            <span>${expanded ? "Show less" : "Show all"}</span>${arrowIcon(expanded ? "up" : "down")}
+          </button>
+        </div>
+      </section>
+    `;
   }).join("");
+
+  grid.querySelectorAll(".product-track").forEach((track) => {
+    track.addEventListener("scroll", scheduleCarouselSync, { passive: true });
+    track.addEventListener("keydown", (event) => {
+      if (event.target !== track || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+      if (track.closest(".menu-group").classList.contains("is-expanded")) return;
+      event.preventDefault();
+      moveCarousel(track, event.key === "ArrowRight" ? 1 : -1);
+    });
+    carouselResizeObserver?.observe(track);
+  });
+  scheduleCarouselSync();
 
   document.getElementById("empty-message").hidden =
     visible.length > 0;
@@ -508,6 +614,28 @@ document.getElementById("show-treats").addEventListener("click", () => {
 });
 
 grid.addEventListener("click", (event) => {
+  const arrow = event.target.closest("[data-carousel]");
+  if (arrow) {
+    const track = arrow.closest(".menu-group").querySelector(".product-track");
+    moveCarousel(track, Number(arrow.dataset.carousel));
+    return;
+  }
+
+  const showAll = event.target.closest("[data-show-all]");
+  if (showAll) {
+    const group = showAll.closest(".menu-group");
+    const expanded = !group.classList.contains("is-expanded");
+    if (expanded) expandedGroups.add(showAll.dataset.showAll);
+    else expandedGroups.delete(showAll.dataset.showAll);
+    group.classList.toggle("is-expanded", expanded);
+    showAll.setAttribute("aria-expanded", String(expanded));
+    showAll.innerHTML = `<span>${expanded ? "Show less" : "Show all"}</span>${arrowIcon(expanded ? "up" : "down")}`;
+    group.querySelector(".carousel-controls").hidden = expanded || group.querySelectorAll(".product").length < 2;
+    group.querySelector(".product-track").scrollLeft = 0;
+    scheduleCarouselSync();
+    return;
+  }
+
   const sizeButton = event.target.closest("[data-size]");
 
   if (sizeButton) {
