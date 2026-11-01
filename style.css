@@ -2566,3 +2566,27 @@ dialog::backdrop {
   .search {width:100%;}
   .search input {width:0;font-size:16px;}
 }
+
+/* Soft photographic depth without decorative frames. */
+.product-track .product-image {
+  padding:0;
+  border:0;
+  border-radius:6px;
+  background:#211a15;
+  transform:none;
+  box-shadow:0 8px 14px rgba(0,0,0,.18),0 22px 36px -16px rgba(0,0,0,.6);
+}
+.product-track .product-image img {border-radius:6px;box-shadow:none;}
+.product-track .product-image::after {background:none;border:0;border-radius:6px;}
+.product-category {bottom:16px;left:16px;}
+.pairing-photo img {
+  border-radius:5px;
+  box-shadow:0 8px 14px rgba(49,33,20,.1),0 25px 40px -16px rgba(49,33,20,.34);
+}
+.pairing-photo > span {margin-top:20px;}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .product-open:hover .product-image {
+    transform:translateY(-3px);
+    box-shadow:0 12px 18px rgba(0,0,0,.2),0 28px 42px -16px rgba(0,0,0,.65);
+  }
+}
