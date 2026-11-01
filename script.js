@@ -729,6 +729,7 @@ function openProduct(id) {
 
   image.src = currentProduct.image;
   image.alt = currentProduct.name;
+  image.style.objectPosition = currentProduct.id === "brownie" ? "50% 57%" : currentProduct.id === "croissant" ? "50% 45%" : "50% 68%";
 
   document.getElementById("detail-name").textContent =
     currentProduct.name;

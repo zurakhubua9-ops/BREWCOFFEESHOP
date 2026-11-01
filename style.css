@@ -287,7 +287,7 @@ button.text-link {
   position:relative;
   isolation:isolate;
   min-height:calc(100svh - 30px);
-  min-height:max(740px,calc(100svh - 30px));
+  min-height:max(620px,calc(100svh - 30px));
   display:flex;
   align-items:center;
   justify-content:center;
@@ -518,12 +518,12 @@ h1 em {
   align-items:flex-end;
   justify-content:space-between;
   gap:40px;
-  padding:60px 0 45px
+  padding:48px 0 32px
 }
 
 .section-heading h2 {
   margin:0;
-  font:400 clamp(62px,7.4vw,112px)/1.02 var(--serif);
+  font:400 clamp(54px,6.3vw,92px)/1.04 var(--serif);
   letter-spacing:-.05em
 }
 
@@ -798,7 +798,7 @@ h1 em {
 /* Menu category carousels */
 .menu-groups {
   display: grid;
-  gap: 62px;
+  gap: 40px;
   min-width: 0;
 }
 .menu-group {
@@ -820,7 +820,7 @@ h1 em {
 }
 .menu-group-heading h3 {
   margin: 0;
-  font: 400 clamp(35px, 4vw, 58px) / 1.15 var(--serif);
+  font: 400 clamp(32px, 3.3vw, 46px) / 1.15 var(--serif);
   letter-spacing: -0.035em;
 }
 .menu-group-heading sup {
@@ -863,7 +863,7 @@ h1 em {
 .product-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: min(58%, 680px);
+  grid-auto-columns: 52%;
   align-items: start;
   gap: 26px;
   min-width: 0;
@@ -887,11 +887,11 @@ h1 em {
   scroll-snap-stop: always;
 }
 .product-track .product-image {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 10;
   border-radius: 3px;
 }
 .product-track:has(> .product:only-child) {
-  grid-auto-columns: min(100%, 680px);
+  grid-auto-columns: 52%;
 }
 .menu-group-bottom {
   display: flex;
@@ -987,7 +987,7 @@ h1 em {
     gap: 16px;
   }
   .product-track .product-image {
-    aspect-ratio: 4 / 4.3;
+    aspect-ratio: 4 / 3;
   }
   .product-track:has(> .product:only-child) {
     grid-auto-columns: 100%;
@@ -1195,7 +1195,7 @@ h1 em {
 
 .space-overlay h2 {
   margin:0 0 25px;
-  font:400 clamp(70px,8.3vw,128px)/1.02 var(--serif);
+  font:400 clamp(60px,7vw,104px)/1.04 var(--serif);
   letter-spacing:-.05em
 }
 
@@ -1229,7 +1229,7 @@ h1 em {
   grid-template-columns:1fr 1.08fr .8fr;
   align-items:center;
   gap:4%;
-  padding:100px var(--gutter);
+  padding:80px var(--gutter);
   background:var(--paper)
 }
 
@@ -1265,7 +1265,7 @@ h1 em {
 }
 
 .pairing-photo-main {
-  height:490px;
+  height:420px;
   margin-bottom:45px
 }
 
@@ -1274,7 +1274,7 @@ h1 em {
 }
 
 .pairing-photo-small {
-  height:340px;
+  height:300px;
   margin-top:100px
 }
 
@@ -1534,7 +1534,7 @@ dialog::backdrop {
 /* Product dialog */
 .product-dialog {
   position:fixed;
-  width:min(1000px,calc(100% - 48px));
+  width:min(900px,calc(100% - 48px));
   max-width:none;
   max-height:calc(100svh - 40px);
   padding:0;
@@ -1573,7 +1573,7 @@ dialog::backdrop {
   display:block;
   width:100%;
   min-width:0;
-  min-height:560px;
+  min-height:470px;
   padding:0;
   border:0;
   overflow:hidden;
@@ -1602,7 +1602,7 @@ dialog::backdrop {
 .detail-content {
   min-width:0;
   align-self:center;
-  padding:70px 36px 40px
+  padding:58px 32px 30px
 }
 
 .detail-content .eyebrow {
@@ -1612,7 +1612,7 @@ dialog::backdrop {
 
 #detail-name {
   margin:0;
-  font:400 clamp(38px,4vw,60px)/1.08 var(--serif);
+  font:400 clamp(34px,3.2vw,46px)/1.12 var(--serif);
   letter-spacing:-.04em
 }
 
@@ -1648,7 +1648,7 @@ dialog::backdrop {
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:88px;
+  min-height:76px;
   padding:13px 8px;
   border:1px solid var(--line);
   text-align:center;
@@ -1701,7 +1701,7 @@ dialog::backdrop {
 }
 
 #detail-price {
-  font:400 42px var(--serif);
+  font:500 30px var(--sans);
   white-space:nowrap;
   font-variant-numeric:tabular-nums
 }
@@ -1962,7 +1962,7 @@ dialog::backdrop {
     gap:14px
   }
   .hero {
-    min-height:max(690px,calc(100svh - 26px))
+    min-height:max(580px,calc(100svh - 26px))
   }
   .hero-content {
     padding:150px 24px 140px
@@ -2052,7 +2052,7 @@ dialog::backdrop {
     display:block
   }
   .section-heading h2 {
-    font-size:clamp(54px,14vw,78px)
+    font-size:clamp(46px,12vw,62px)
   }
   .heading-aside {
     margin-top:22px
@@ -2304,7 +2304,7 @@ dialog::backdrop {
     margin:10px 10px -54px auto
   }
   .detail-image-button {
-    height:clamp(240px,38dvh,350px);
+    height:clamp(180px,29dvh,260px);
     min-height:0
   }
   .detail-content {
@@ -2314,10 +2314,10 @@ dialog::backdrop {
     font-size:13px
   }
   #detail-name {
-    font-size:40px
+    font-size:34px
   }
   #size-options label {
-    min-height:82px
+    min-height:72px
   }
   .image-viewer {
     padding-inline:12px
@@ -2354,4 +2354,41 @@ dialog::backdrop {
     animation:none!important;
     transition:none!important
   }
+}
+
+/* Readable supporting text and balanced product framing. */
+.product-description {font-size:14px;line-height:1.7;color:#cbbcad;}
+.detail-description {font-size:14px;line-height:1.75;margin:20px 0;}
+.detail-note {font-size:12px;color:#6b6055;}
+#detail-unit, #size-fieldset legend {font-size:12px;}
+#size-options small {font-size:11px;}
+.menu-meta, .carousel-hint {font-size:10px;}
+.menu-group-heading .eyebrow {font-size:10px;}
+.product-category {font-size:10px;}
+.desktop-nav a, .menu-button {font-size:12px;}
+.filters button, .show-all {font-size:12px;}
+.detail-image-button > img {object-position:50% 68%;}
+.menu-group:not(.has-overflow) .carousel-hint {visibility:hidden;}
+@media(min-width:1001px) {
+  .menu-groups {max-width:1100px;margin-inline:auto;}
+  .menu-group.is-expanded .product-track {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:640px) {
+  .menu-group-heading .eyebrow {font-size:9px;letter-spacing:.1em;}
+  .menu-group-heading h3 {font-size:clamp(28px,7.5vw,36px);}
+  .product-track .product-caption h4 {font-size:26px;}
+  .product-caption {margin-top:16px;}
+  .product-description {font-size:14px;margin:10px 0 14px;}
+  .carousel-hint {font-size:9px;max-width:17ch;}
+  .detail-content {padding:24px 20px;}
+  #size-fieldset {margin:20px 0;}
+  .detail-total {margin-top:20px;padding-top:16px;}
+  .detail-note {margin-top:14px;}
+  .menu-button {font-size:11px;}
+}
+@media(max-width:360px) {
+  .menu-group-heading {gap:10px;}
+  .menu-group-heading h3 {font-size:27px;}
+  .carousel-controls {gap:5px;}
+  .carousel-arrow {width:44px;height:44px;}
 }
