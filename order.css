@@ -1,0 +1,14 @@
+
+.bag-launch{position:fixed;right:24px;bottom:24px;z-index:50;border:1px solid #f4eee2;background:#201a16;color:#fff7e9;border-radius:40px;padding:17px 24px;box-shadow:0 8px 30px #0003;font:600 14px Manrope,sans-serif;cursor:pointer}
+.bag-launch span{margin-left:12px}
+.bag-dialog{width:min(620px,calc(100% - 24px));max-height:88dvh;margin:auto;padding:32px;border:0;background:#f8f3e9;color:#201a16;overflow:auto}
+.bag-dialog::backdrop{background:#17120ecc}
+.bag-heading,.bag-total,.bag-row{display:flex;justify-content:space-between;gap:18px;align-items:center}
+.bag-heading h2{font:normal 48px "Bodoni Moda",serif}.bag-note{font-size:13px;line-height:1.7;margin:20px 0;color:#65594c}
+.bag-row{border-top:1px solid #d8cbbb;padding:18px 0}.bag-row small{display:block;margin-top:6px;color:#65594c}
+.bag-quantity{display:flex;align-items:center;gap:12px}.bag-quantity button{width:36px;height:36px;border:1px solid #c8b8a5;border-radius:50%;background:transparent;cursor:pointer}
+.bag-total{border-top:1px solid #c8b8a5;padding:22px 0;font-size:20px}
+.bag-dialog .button{width:100%}.bag-dialog button:disabled{opacity:.45;cursor:not-allowed}
+#bag-status{margin:16px 0;line-height:1.6}#saved-order{border-top:1px solid #c8b8a5;padding-top:20px}#saved-order pre{white-space:pre-wrap;font:13px/1.8 Manrope,sans-serif;margin:15px 0}
+#saved-order button{display:block;padding:12px 0}
+@media(max-width:480px){.bag-dialog{padding:22px}.bag-launch{bottom:16px;right:16px}.bag-row{align-items:flex-start}.bag-heading h2{font-size:38px}}
